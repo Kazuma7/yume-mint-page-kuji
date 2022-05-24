@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/yume-mint-page-kuji/static/css/main.1b7883d1.css",
+    "main.js": "/yume-mint-page-kuji/static/js/main.9bc47cbd.js",
+    "static/js/787.86860d88.chunk.js": "/yume-mint-page-kuji/static/js/787.86860d88.chunk.js",
+    "static/media/YumemiGothicBeta.woff": "/yume-mint-page-kuji/static/media/YumemiGothicBeta.e1f8c4a1d849700e5b61.woff",
+    "index.html": "/yume-mint-page-kuji/index.html",
+    "main.1b7883d1.css.map": "/yume-mint-page-kuji/static/css/main.1b7883d1.css.map",
+    "main.9bc47cbd.js.map": "/yume-mint-page-kuji/static/js/main.9bc47cbd.js.map",
+    "787.86860d88.chunk.js.map": "/yume-mint-page-kuji/static/js/787.86860d88.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b7883d1.css",
+    "static/js/main.9bc47cbd.js"
+  ]
+}
