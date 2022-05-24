@@ -11,24 +11,37 @@ contract studyjoin is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenCounter;
 
-    bool public revealFlg = false;
+    uint256 public revealFlg = 0;
+    uint256 private hitId = 100;
     bool public saleFlg = false;
-    //bytes public secretURL = "";
-    //bytes public baseURL = "https://gateway.pinata.cloud/ipfs/QmUJTnUaF28dvVj6xWKfywhRhx7WKhU4aHm1BdUb3HxUQc";
+    uint256 public totalSupply = 30;
 
     mapping(address => uint256) private _addressToApprove;
 
-    constructor () ERC721 ("YumeWeb3Study","YWS") {}
+    constructor () ERC721 ("YumeKujiJikken","YKJ") {}
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        uint256 flg = 0;
+
+        if(revealFlg==0){
+            flg = 0;
+        }else if(revealFlg==1){
+            if(tokenId == hitId){
+                flg = 2;
+            }else{
+                flg = 1;
+            }
+        }
 
         bytes memory json = abi.encodePacked(
             '{',
-                '"name": "MintPage #',
+                '"name": "Yumekuji #',
                 Strings.toString(tokenId),
                 '",',
                 '"description": "",',
-                '"image": "https://gateway.pinata.cloud/ipfs/QmUJTnUaF28dvVj6xWKfywhRhx7WKhU4aHm1BdUb3HxUQc"',
+                '"image": "https://gateway.pinata.cloud/ipfs/QmQQqqaWPpY2WYBxrmE1LW8YR6MbK1zA9X5t9HeyM22QSU/',
+                Strings.toString(flg),
+                '.jpg"',
             '}'
         );
 
@@ -53,12 +66,20 @@ contract studyjoin is ERC721URIStorage, Ownable {
         _addressToApprove[_msgSender()] = 1;
     }
 
-    function changeSaleFlg() public onlyOwner {
+    function changeOnSaleFlg() public onlyOwner {
         saleFlg = true;
     }
 
-    function changeRevealFlg() public onlyOwner {
-        revealFlg = true;
+    function changeOffSaleFlg() public onlyOwner{
+        saleFlg = false;
+    }
+
+    function changeOnRevealFlg() public onlyOwner {
+        revealFlg = 1;
+    }
+
+    function changeOffRevealFlg() public onlyOwner{
+        revealFlg = 0;
     }
 
     function getAddressApprove() public view returns(uint256){
@@ -67,6 +88,14 @@ contract studyjoin is ERC721URIStorage, Ownable {
 
     function getSupply()public view returns(uint256){
         return _tokenCounter.current();
+    }
+
+    function getTotalSupply()public view returns(uint256){
+        return totalSupply;
+    }
+
+    function setHitId(uint256 num)public onlyOwner{
+        hitId = num;
     }
 
 }
